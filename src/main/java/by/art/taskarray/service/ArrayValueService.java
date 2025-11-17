@@ -1,12 +1,13 @@
 package by.art.taskarray.service;
 
 import by.art.taskarray.entity.SimpleArray;
+import java.util.OptionalLong;
 
-interface ArrayValueService {
+public interface ArrayValueService {
 
-  long min(SimpleArray array);
+  OptionalLong min(SimpleArray array);
 
-  long max(SimpleArray array);
+  OptionalLong max(SimpleArray array);
 
-  long average(SimpleArray array);
+  OptionalLong sum(SimpleArray array);
 }

@@ -2,11 +2,9 @@ package by.art.taskarray.service;
 
 import by.art.taskarray.entity.SimpleArray;
 
-interface ArrayValueService {
+public interface ArraySortService {
 
-  long selectMin(SimpleArray array);
+  SimpleArray bubbleSort(SimpleArray array);
 
-  long selectMax(SimpleArray array);
-
-
+  SimpleArray insertionSort(SimpleArray array);
 }

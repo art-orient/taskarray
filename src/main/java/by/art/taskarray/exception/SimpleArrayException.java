@@ -1,18 +1,19 @@
 package by.art.taskarray.exception;
 
-public class ArrayNotValidException extends Exception{
-  public ArrayNotValidException() {
+public class SimpleArrayException extends Exception {
+
+  public SimpleArrayException() {
   }
 
-  public ArrayNotValidException(String message) {
+  public SimpleArrayException(String message) {
     super(message);
   }
 
-  public ArrayNotValidException(String message, Throwable cause) {
+  public SimpleArrayException(String message, Throwable cause) {
     super(message, cause);
   }
 
-  public ArrayNotValidException(Throwable cause) {
+  public SimpleArrayException(Throwable cause) {
     super(cause);
   }
 }
