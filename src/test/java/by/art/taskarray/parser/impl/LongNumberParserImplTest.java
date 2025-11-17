@@ -32,7 +32,7 @@ class LongNumberParserImplTest {
   }
 
   @Test
-  void parseNumberLine() {
+  void parseNumberLineTest() {
     LongNumberParser parser = new LongNumberParserImpl();
     List<long[]> expected = new ArrayList<>();
     expected.add(new long[]{1, 2, 3});
