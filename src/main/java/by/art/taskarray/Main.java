@@ -3,7 +3,9 @@ package by.art.taskarray;
 import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.factory.SimpleArrayFactory;
 import by.art.taskarray.factory.impl.SimpleArrayFactoryImpl;
+import by.art.taskarray.service.ArraySortService;
 import by.art.taskarray.service.ArrayValueService;
+import by.art.taskarray.service.impl.ArraySortServiceImpl;
 import by.art.taskarray.service.impl.ArrayValueServiceImpl;
 
 import java.util.Arrays;
@@ -20,5 +22,10 @@ public class Main {
       arrayValueService.max(simpleArray);
       arrayValueService.sum(simpleArray);
     }
+    ArraySortService sortService = new ArraySortServiceImpl();
+    sortService.bubbleSort(simpleArrays.get(2));
+    System.out.println(Arrays.toString(simpleArrays.get(2).getArray()));
+    sortService.insertionSort(simpleArrays.get(3));
+    System.out.println(Arrays.toString(simpleArrays.get(3).getArray()));
   }
 }

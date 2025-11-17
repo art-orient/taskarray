@@ -4,7 +4,7 @@ import by.art.taskarray.entity.SimpleArray;
 
 public interface ArraySortService {
 
-  SimpleArray bubbleSort(SimpleArray array);
+  void bubbleSort(SimpleArray array);
 
-  SimpleArray insertionSort(SimpleArray array);
+  void insertionSort(SimpleArray array);
 }
