@@ -1,6 +1,6 @@
-package by.art.taskarray.exception.parser.impl;
+package by.art.taskarray.parser.impl;
 
-import by.art.taskarray.exception.parser.LongNumberParser;
+import by.art.taskarray.parser.LongNumberParser;
 import by.art.taskarray.validator.NumberLineValidator;
 import by.art.taskarray.validator.impl.NumberLineValidatorImpl;
 import org.apache.logging.log4j.LogManager;

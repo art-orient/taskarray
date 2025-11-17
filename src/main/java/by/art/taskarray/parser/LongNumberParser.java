@@ -1,4 +1,4 @@
-package by.art.taskarray.exception.parser;
+package by.art.taskarray.parser;
 
 import java.util.List;
 
