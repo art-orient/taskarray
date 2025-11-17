@@ -5,5 +5,5 @@ import by.art.taskarray.entity.SimpleArray;
 import java.util.List;
 
 public interface SimpleArrayFactory {
-  List<SimpleArray> createSimpleArray (List<long[]> longArrays);
+  List<SimpleArray> createSimpleArray (String filePath);
 }

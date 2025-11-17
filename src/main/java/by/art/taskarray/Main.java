@@ -1,28 +1,24 @@
 package by.art.taskarray;
 
-import by.art.taskarray.exception.SimpleArrayException;
-import by.art.taskarray.parser.LongNumberParser;
-import by.art.taskarray.parser.impl.LongNumberParserImpl;
-import by.art.taskarray.reader.DataReader;
-import by.art.taskarray.reader.impl.DataReaderImpl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import by.art.taskarray.entity.SimpleArray;
+import by.art.taskarray.factory.SimpleArrayFactory;
+import by.art.taskarray.factory.impl.SimpleArrayFactoryImpl;
+import by.art.taskarray.service.ArrayValueService;
+import by.art.taskarray.service.impl.ArrayValueServiceImpl;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-  public static final Logger logger = LogManager.getLogger();
-
   public static void main(String[] args) {
-    DataReader reader = new DataReaderImpl();
-    List<String> linesFromFile = new ArrayList<>();
-    try {
-      linesFromFile = reader.readFile("data/data.txt");
-    } catch (SimpleArrayException e) {
-      logger.warn(e.getMessage());
+    SimpleArrayFactory factory = new SimpleArrayFactoryImpl();
+    List <SimpleArray> simpleArrays = factory.createSimpleArray("data/data.txt");
+    ArrayValueService arrayValueService = new ArrayValueServiceImpl();
+    for (SimpleArray simpleArray : simpleArrays) {
+      System.out.println(Arrays.toString(simpleArray.getArray()));
+      arrayValueService.min(simpleArray);
+      arrayValueService.max(simpleArray);
+      arrayValueService.sum(simpleArray);
     }
-    LongNumberParser parser = new LongNumberParserImpl();
-    List<long[]> longArrays = parser.parseNumberLine(linesFromFile);
   }
 }
