@@ -6,6 +6,6 @@ public class NumberLineValidatorImpl implements NumberLineValidator {
 
   @Override
   public boolean isDataLongNumber(String numbersLine) {
-    return numbersLine != null && numbersLine.matches(LONG_NUMBER_REGEX);
+    return (numbersLine != null && numbersLine.matches(LONG_NUMBER_REGEX));
   }
 }

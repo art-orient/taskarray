@@ -42,7 +42,7 @@ class DataReaderImplTest {
   }
 
   @Test()
-  void ReadNoExistFileThenThrowExceptionTest() {
+  void readNoExistFileThenThrowExceptionTest() {
     SimpleArrayException exception = assertThrows(SimpleArrayException.class,
             () -> reader.readFile("data/no_file.txt"));
     assertTrue(exception.getMessage().contains("Failed to read file"));

@@ -22,7 +22,7 @@ public class DataReaderImpl implements DataReader {
       lines = Files.readAllLines(path);
       logger.info("File {} was read successfully", filePath);
     } catch (IOException e) {
-      logger.warn("failed to read file {}", filePath);
+      logger.error("Failed to read file {}", filePath);
       throw new SimpleArrayException(String.format("Failed to read file %s", filePath), e);
     }
     return lines;
