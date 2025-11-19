@@ -2,11 +2,8 @@ package by.art.taskarray.reader.impl;
 
 import by.art.taskarray.exception.SimpleArrayException;
 import by.art.taskarray.reader.DataReader;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -45,6 +42,7 @@ class DataReaderImplTest {
   void readNoExistFileThenThrowExceptionTest() {
     SimpleArrayException exception = assertThrows(SimpleArrayException.class,
             () -> reader.readFile("data/no_file.txt"));
-    assertTrue(exception.getMessage().contains("Failed to read file"));
+    boolean condition = exception.getMessage().contains("Failed to read file");
+    assertTrue(condition);
   }
 }
