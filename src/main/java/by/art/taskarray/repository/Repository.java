@@ -60,7 +60,7 @@ public class Repository {
     logger.debug("SimpleArray with index = {} removed from repository", index);
   }
 
-  public List<SimpleArray> sort(Comparator<SimpleArray> comparator) {
+  public List<SimpleArray> sort(Comparator<? super SimpleArray> comparator) {
     logger.debug("Sorting of repository by comparator");
     return simpleArrays.stream()
             .sorted(comparator)

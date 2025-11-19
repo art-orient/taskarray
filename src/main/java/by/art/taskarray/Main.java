@@ -32,5 +32,6 @@ public class Main {
     ArraySortService sortService = new ArraySortServiceImpl();
     sortService.bubbleSort(simpleArrays.get(2));
     sortService.insertionSort(simpleArrays.get(3));
+
   }
 }
