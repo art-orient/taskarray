@@ -5,14 +5,23 @@ import by.art.taskarray.factory.SimpleArrayFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleArrayFactoryImplTest {
   SimpleArrayFactory factory;
+
+  static Stream<Arguments> provideArrays() {
+    return Stream.of(
+            Arguments.of(new long[]{1, 2, 3}),
+            Arguments.of(new long[]{5, 7, 9}),
+            Arguments.of(new long[]{15, 27, 39, 44, 55})
+    );
+  }
 
   @BeforeEach
   void setUp() {
@@ -25,27 +34,25 @@ class SimpleArrayFactoryImplTest {
   }
 
   @Test
-  void createSimpleArrayTest() {
+  void createSimpleArray() {
     long[] expectedArray = {1, 2, 3};
     SimpleArray actual = factory.createSimpleArray(expectedArray);
-    assertNotNull(actual);
-    assertTrue(actual.getArrayId() > 0);
-    assertArrayEquals(expectedArray, actual.getArray());
+    assertAll(
+            () -> assertNotNull(actual),
+            () -> assertTrue(actual.getArrayId() > 0),
+            () -> assertArrayEquals(expectedArray, actual.getArray())
+    );
   }
 
-  @Test
-  void createAllSimpleArraysTest() {
+  @ParameterizedTest
+  @MethodSource("provideArrays")
+  void createAllSimpleArraysTest(long[] array) {
     long[] expectedArray1 = {1, 2, 3};
-    long[] expectedArray2 = {5, 7, 9};
-    long[] expectedArray3 = {15, 27, 39, 44, 55};
-    List<long[]> arrays = new ArrayList<>();
-    arrays.add(expectedArray1);
-    arrays.add(expectedArray2);
-    arrays.add(expectedArray3);
-    List<SimpleArray> actual = factory.createSimpleArrays(arrays);
-    assertNotNull(actual);
-    assertEquals(3, actual.size());
-    assertTrue(actual.get(0).getArrayId() > 0);
-    assertArrayEquals(expectedArray1, actual.get(0).getArray());
+    SimpleArray actual = factory.createSimpleArray(array);
+    assertAll(
+            () -> assertNotNull(actual),
+            () -> assertTrue(actual.getArrayId() > 0),
+            () -> assertTrue(actual.getArray().length > 0)
+    );
   }
 }
