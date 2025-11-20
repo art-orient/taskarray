@@ -10,7 +10,6 @@ public class Warehouse {
   private static final Logger logger = LogManager.getLogger();
   private static Warehouse instance;
   private HashMap<Long, SimpleArrayStatistic> parameters;
-
   private Warehouse() {
   }
 
@@ -21,11 +20,12 @@ public class Warehouse {
     return instance;
   }
 
-  public void putParameters(long arrayId, SimpleArrayStatistic statistic) {
-    if (statistic == null) {
-      logger.warn("Statistic is null in array with id = {}", arrayId);
-    }
-    parameters.put(arrayId, statistic);
+  public SimpleArrayStatistic put(long arrayId, SimpleArrayStatistic statistic) {
+    return parameters.put(arrayId, statistic);
+  }
+
+  public void remove(long arrayId) {
+    parameters.remove(arrayId);
   }
 
   public Optional<SimpleArrayStatistic> getParameters(long arrayId) {

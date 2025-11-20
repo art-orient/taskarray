@@ -79,7 +79,7 @@ public class Repository {
 
   public List<SimpleArray> queryStream(Specification specification) {
     return simpleArrays.stream()
-            .filter(simpleArray -> specification.specify(simpleArray))
+            .filter(specification::specify)
             .toList();
   }
 

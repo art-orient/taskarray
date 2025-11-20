@@ -24,7 +24,7 @@ public class SimpleArrayObserverImpl implements SimpleArrayObserver {
     long sum = summaryStatistics.getSum();
     SimpleArrayStatistic statistic = new SimpleArrayStatistic(min, max, sum);
     Warehouse warehouse = Warehouse.getInstance();
-    warehouse.putParameters(simpleArray.getArrayId(), statistic);
+    warehouse.put(simpleArray.getArrayId(), statistic);
     logger.info("Added parameters into warehouse, array ID = {}", simpleArray.getArrayId());
   }
 }
