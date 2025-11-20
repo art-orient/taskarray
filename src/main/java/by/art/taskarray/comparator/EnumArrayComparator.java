@@ -1,4 +1,4 @@
-package by.art.taskarray.repository.comparator;
+package by.art.taskarray.comparator;
 
 import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.service.ArrayValueService;

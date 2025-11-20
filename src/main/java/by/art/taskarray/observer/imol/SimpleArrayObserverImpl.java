@@ -3,7 +3,7 @@ package by.art.taskarray.observer.imol;
 import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.observer.SimpleArrayEvent;
 import by.art.taskarray.observer.SimpleArrayObserver;
-import by.art.taskarray.statistic.SimpleArrayStatistic;
+import by.art.taskarray.entity.SimpleArrayStatistic;
 import by.art.taskarray.warehouse.Warehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,4 +1,4 @@
-package by.art.taskarray.statistic;
+package by.art.taskarray.entity;
 
 import java.util.StringJoiner;
 

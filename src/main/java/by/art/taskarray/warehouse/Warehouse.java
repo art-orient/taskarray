@@ -1,6 +1,6 @@
 package by.art.taskarray.warehouse;
 
-import by.art.taskarray.statistic.SimpleArrayStatistic;
+import by.art.taskarray.entity.SimpleArrayStatistic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.HashMap;

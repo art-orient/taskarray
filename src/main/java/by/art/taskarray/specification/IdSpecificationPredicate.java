@@ -1,4 +1,4 @@
-package by.art.taskarray.repository;
+package by.art.taskarray.specification;
 
 import by.art.taskarray.entity.SimpleArray;
 

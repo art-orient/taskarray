@@ -2,6 +2,8 @@ package by.art.taskarray.repository;
 
 import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.exception.SimpleArrayException;
+import by.art.taskarray.specification.Specification;
+import by.art.taskarray.specification.SpecificationPredicate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
