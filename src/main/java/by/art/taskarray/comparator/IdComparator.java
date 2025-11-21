@@ -8,6 +8,6 @@ public class IdComparator implements Comparator<SimpleArray> {
 
   @Override
   public int compare(SimpleArray simpleArray1, SimpleArray simpleArray2) {
-    return Long.compare(simpleArray1.getArrayId(),simpleArray2.getArrayId());
+    return Long.compare(simpleArray1.getArrayId(), simpleArray2.getArrayId());
   }
 }

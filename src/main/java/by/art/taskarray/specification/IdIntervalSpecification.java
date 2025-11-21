@@ -2,15 +2,7 @@ package by.art.taskarray.specification;
 
 import by.art.taskarray.entity.SimpleArray;
 
-public class IdIntervalSpecification implements Specification {
-
-  private final int minId;
-  private final int maxId;
-
-  public IdIntervalSpecification(int minId, int maxId) {
-    this.minId = minId;
-    this.maxId = maxId;
-  }
+public record IdIntervalSpecification(long minId, long maxId) implements Specification {
 
   @Override
   public boolean specify(SimpleArray simpleArray) {

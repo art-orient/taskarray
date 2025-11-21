@@ -8,61 +8,72 @@ import java.util.OptionalLong;
 
 public class ArrayValueServiceImpl implements ArrayValueService {
   public static final Logger logger = LogManager.getLogger();
+  private static final String MIN_OPERATION = "MIN";
+  private static final String MAX_OPERATION = "MAX";
+  private static final String SUM_OPERATION = "SUM";
 
   @Override
   public OptionalLong min(SimpleArray simpleArray) {
-    if (isArrayNull(simpleArray)) {
-      return OptionalLong.empty();
-    }
-    long[] array = simpleArray.getArray();
-    long min = array[0];
-    for (long number : array) {
-      if (number < min) {
-        min = number;
-      }
-    }
-    logger.debug("Minimum = {}", min);
-    return OptionalLong.of(min);
+    return calculate(simpleArray, MIN_OPERATION);
   }
 
   @Override
   public OptionalLong max(SimpleArray simpleArray) {
-    if (isArrayNull(simpleArray)) {
-      return OptionalLong.empty();
-    }
-    long[] array = simpleArray.getArray();
-    long max = array[0];
-    for (long number : array) {
-      if (number > max) {
-        max = number;
-      }
-    }
-    logger.debug("Maximum = {}", max);
-    return OptionalLong.of(max);
+    return calculate(simpleArray, MIN_OPERATION);
   }
 
   @Override
   public OptionalLong sum(SimpleArray simpleArray) {
-    if (isArrayNull(simpleArray)) {
+    return calculate(simpleArray, SUM_OPERATION);
+  }
+
+  private OptionalLong calculate(SimpleArray simpleArray, String operation) {
+    if (isArrayNullOrEmpty(simpleArray)) {
       return OptionalLong.empty();
     }
     long[] array = simpleArray.getArray();
-    long sum = 0;
-    for (long number : array) {
-      sum += number;
-    }
-    logger.debug("Sum = {}", sum);
-    return OptionalLong.of(sum);
+    long result = switch (operation) {
+      case MIN_OPERATION -> {
+        long min = array[0];
+        for (long value : array) {
+          if (value < min) {
+            min = value;
+          }
+        }
+        logger.debug("Minimum = {}", min);
+        yield min;
+      }
+      case MAX_OPERATION -> {
+        long max = array[0];
+        for (long value : array) {
+          if (value > max) {
+            max = value;
+          }
+        }
+        logger.debug("Maximum = {}", max);
+        yield max;
+      }
+      case SUM_OPERATION -> {
+        long sum = 0;
+        for (long value : array) {
+          sum += value;
+        }
+        logger.debug("Sum = {}", sum);
+        yield sum;
+      }
+    };
+    return OptionalLong.of(result);
   }
 
-  private boolean isArrayNull(SimpleArray simpleArray) {
+  private boolean isArrayNullOrEmpty(SimpleArray simpleArray) {
+    boolean isNullOrEmpty = false;
     if(simpleArray == null) {
       logger.warn("SimpleArray is null");
-      return true;
+      isNullOrEmpty = true;
     } else if(simpleArray.getArray() == null || simpleArray.getArray().length == 0) {
       logger.warn("Array is null or empty");
-      return true;
+      isNullOrEmpty = true;
     }
-    return false;
+    return isNullOrEmpty;
   }
 }

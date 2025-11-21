@@ -30,9 +30,8 @@ public class Warehouse {
 
   public Optional<SimpleArrayStatistic> getParameters(long arrayId) {
     Optional<SimpleArrayStatistic> optionalParameters = Optional.ofNullable(parameters.get(arrayId));
-    if (optionalParameters.isEmpty()) {
-      logger.warn("No such array with id = {}", arrayId);
-    }
+      logger.atInfo().log("Parameters of array with id = {} {}", arrayId,
+              optionalParameters.map(SimpleArrayStatistic::toString).orElse("not found"));
     return optionalParameters;
   }
 }

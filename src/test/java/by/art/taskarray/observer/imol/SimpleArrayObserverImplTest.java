@@ -4,6 +4,7 @@ import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.entity.SimpleArrayStatistic;
 import by.art.taskarray.observer.SimpleArrayEvent;
 import by.art.taskarray.observer.SimpleArrayObserver;
+import by.art.taskarray.observer.impl.SimpleArrayObserverImpl;
 import by.art.taskarray.warehouse.Warehouse;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

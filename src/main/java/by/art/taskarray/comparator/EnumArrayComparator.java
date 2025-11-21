@@ -9,16 +9,15 @@ public enum EnumArrayComparator implements Comparator<SimpleArray> {
   ID {
     @Override
     public int compare(SimpleArray array1, SimpleArray array2) {
-      return (int) (array1.getArrayId() - array2.getArrayId());
+      return Long.compare(array1.getArrayId(), array2.getArrayId());
     }
   },
 
   MIN {
     @Override
     public int compare(SimpleArray array1, SimpleArray array2) {
-      ArrayValueService service = new ArrayValueServiceImpl();
-      long min1 = service.min(array1).getAsLong();
-      long min2 = service.min(array2).getAsLong();
+      long min1 = service.min(array1).orElse(Long.MAX_VALUE);
+      long min2 = service.min(array2).orElse(Long.MAX_VALUE);
       return Long.compare(min1, min2);
     }
   },
@@ -26,9 +25,8 @@ public enum EnumArrayComparator implements Comparator<SimpleArray> {
   MAX {
     @Override
     public int compare(SimpleArray array1, SimpleArray array2) {
-      ArrayValueService service = new ArrayValueServiceImpl();
-      long max1 = service.max(array1).getAsLong();
-      long max2 = service.max(array2).getAsLong();
+      long max1 = service.max(array1).orElse(Long.MIN_VALUE);
+      long max2 = service.max(array2).orElse(Long.MIN_VALUE);
       return Long.compare(max1, max2);
     }
   },
@@ -36,9 +34,8 @@ public enum EnumArrayComparator implements Comparator<SimpleArray> {
   SUM {
     @Override
     public int compare(SimpleArray array1, SimpleArray array2) {
-      ArrayValueService service = new ArrayValueServiceImpl();
-      long sum1 = service.sum(array1).getAsLong();
-      long sum2 = service.sum(array2).getAsLong();
+      long sum1 = service.sum(array1).orElse(0);
+      long sum2 = service.sum(array2).orElse(0);
       return Long.compare(sum1, sum2);
     }
   },
@@ -52,5 +49,7 @@ public enum EnumArrayComparator implements Comparator<SimpleArray> {
       long first2 = array2[0];
       return Long.compare(first1, first2);
     }
-  }
+  };
+
+  private static final ArrayValueService service = new ArrayValueServiceImpl();
 }

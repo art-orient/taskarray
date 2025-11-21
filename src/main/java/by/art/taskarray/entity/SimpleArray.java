@@ -25,6 +25,7 @@ public class SimpleArray implements SimpleArrayObservable {
   public SimpleArray(long[] array) {
     this.array = Arrays.copyOf(array, array.length);
     this.arrayId = IdGenerator.generateId();
+    notifyObservers();
   }
 
   @Override

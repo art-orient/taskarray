@@ -1,27 +1,25 @@
-package by.art.taskarray.observer.imol;
+package by.art.taskarray.observer.impl;
 
 import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.observer.SimpleArrayEvent;
 import by.art.taskarray.observer.SimpleArrayObserver;
 import by.art.taskarray.entity.SimpleArrayStatistic;
+import by.art.taskarray.service.ArrayValueService;
+import by.art.taskarray.service.impl.ArrayValueServiceImpl;
 import by.art.taskarray.warehouse.Warehouse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
-import java.util.LongSummaryStatistics;
-
 public class SimpleArrayObserverImpl implements SimpleArrayObserver {
   private static final Logger logger = LogManager.getLogger();
+  private final ArrayValueService service = new ArrayValueServiceImpl();
 
   @Override
   public void update(SimpleArrayEvent simpleArrayEvent) {
     SimpleArray simpleArray = simpleArrayEvent.getSource();
-    long[] array = simpleArray.getArray();
-    LongSummaryStatistics summaryStatistics = Arrays.stream(array).summaryStatistics();
-    long min = summaryStatistics.getMin();
-    long max = summaryStatistics.getMax();
-    long sum = summaryStatistics.getSum();
+    long min = service.min(simpleArray).orElse(Long.MAX_VALUE);
+    long max = service.max(simpleArray).orElse(Long.MIN_VALUE);
+    long sum = service.sum(simpleArray).orElse(0L);
     SimpleArrayStatistic statistic = new SimpleArrayStatistic(min, max, sum);
     Warehouse warehouse = Warehouse.getInstance();
     warehouse.put(simpleArray.getArrayId(), statistic);

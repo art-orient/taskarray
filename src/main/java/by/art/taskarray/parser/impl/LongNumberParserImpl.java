@@ -26,7 +26,7 @@ public class LongNumberParserImpl implements LongNumberParser {
       long[] currentArray = Arrays.stream(numbers)
                               .mapToLong(Long::parseLong)
                               .toArray();
-      logger.debug("Array is created - {}", Arrays.toString(currentArray));
+      logger.atDebug().log("Array is created - {}", Arrays.toString(currentArray));
       result.add(currentArray);
     }
     logger.info("Parsing is done");

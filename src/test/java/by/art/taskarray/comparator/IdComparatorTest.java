@@ -11,7 +11,7 @@ class IdComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldReturnZero_whenIdsAreEqual() {
+  void compareShouldReturnZeroWhenIdsAreEqual() {
     SimpleArray array1 = createSimpleArray(10, 1, 2, 3);
     SimpleArray array2 = createSimpleArray(10, 4, 5, 6);
     int actual = comparator.compare(array1, array2);
@@ -20,7 +20,7 @@ class IdComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldReturnNegative_whenFirstIdIsSmaller() {
+  void compareShouldReturnNegativeWhenFirstIdIsSmaller() {
     SimpleArray array1 = createSimpleArray(1, 1, 2, 3);
     SimpleArray array2 = createSimpleArray(5, 4, 5, 6);
     int actual = comparator.compare(array1, array2);
@@ -29,7 +29,7 @@ class IdComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldReturnPositive_whenFirstIdIsGreater() {
+  void compareShouldReturnPositiveWhenFirstIdIsGreater() {
     SimpleArray array1 = createSimpleArray(20, 1, 2, 3);
     SimpleArray array2 = createSimpleArray(5, 4, 5, 6);
     int actual = comparator.compare(array1, array2);

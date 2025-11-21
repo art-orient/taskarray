@@ -2,13 +2,7 @@ package by.art.taskarray.specification;
 
 import by.art.taskarray.entity.SimpleArray;
 
-public class IdSpecificationPredicate implements SpecificationPredicate {
-
-  private int id;
-
-  public IdSpecificationPredicate(int id) {
-    this.id = id;
-  }
+public record IdSpecificationPredicate(long id) implements SpecificationPredicate {
 
   @Override
   public boolean test(SimpleArray simpleArray) {
