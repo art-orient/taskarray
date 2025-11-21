@@ -40,7 +40,7 @@ class SimpleArrayObserverImplTest {
     SimpleArrayEvent event = mock(SimpleArrayEvent.class);
     when(event.getSource()).thenReturn(simpleArray);
     observer.update(event);
-    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId).get();
+    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId).orElse(null);
     assertAll(
             () -> assertNotNull(statistic),
             () -> assertEquals(-2, statistic.getMin()),
@@ -58,7 +58,7 @@ class SimpleArrayObserverImplTest {
     SimpleArrayEvent event = mock(SimpleArrayEvent.class);
     when(event.getSource()).thenReturn(simpleArray);
     observer.update(event);
-    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId).get();
+    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId).orElse(null);
     assertAll(
             () -> assertNotNull(statistic),
             () -> assertEquals(3, statistic.getMin()),

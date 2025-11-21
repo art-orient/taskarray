@@ -20,31 +20,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DataReaderImplTest {
   DataReader reader;
-  List<String> expected;
+  String filepath = "test_data.txt";
+  String badFilePath = "data/no_file.txt";
+  List<String> expected = Arrays.asList("1; 2;    3",
+          "1; 2; x3; 6..5; 77",
+          "",
+          "11, -2,,,8",
+          "one, two, three",
+          "    42; 21;    5; 10; 100",
+          "68425862; 5843; -876221563; 85462;2254; 8562",
+          "10.5; 54; 6.2");
 
   @BeforeEach
   void setUp() {
     reader = new DataReaderImpl();
-    expected = Arrays.asList("1; 2;    3",
-            "1; 2; x3; 6..5; 77",
-            "",
-            "11, -2,,,8",
-            "one, two, three",
-            "    42; 21;    5; 10; 100",
-            "68425862; 5843; -876221563; 85462;2254; 8562",
-            "10.5; 54; 6.2");
   }
 
   @AfterEach
   void tearDown() {
     reader = null;
-    expected = null;
   }
 
   @Test
   @Tag("reader")
-  void readFileWithMock_ShouldReturnLines_whenFileReadSuccessfully() throws SimpleArrayException {
-    String filepath = "test_data.txt";
+  void readFileWithMockShouldReturnLinesWhenFileReadSuccessfully() throws SimpleArrayException {
     Path path = Path.of(filepath);
     try (var mocked = Mockito.mockStatic(Files.class)) {
       mocked.when(() -> Files.readAllLines(path)).thenReturn(expected);
@@ -60,8 +59,7 @@ class DataReaderImplTest {
 
   @Test()
   @Tag("reader")
-  void readNoExistFileWithMock_shouldThrowException_whenExceptionOccurs() {
-    String badFilePath = "data/no_file.txt";
+  void readNoExistFileWithMockShouldThrowExceptionWhenExceptionOccurs() {
     Path path = Path.of(badFilePath);
     try (var mocked = Mockito.mockStatic(Files.class)) {
       mocked.when(() -> Files.readAllLines(path))
@@ -75,8 +73,7 @@ class DataReaderImplTest {
 
   @Test
   @Tags({@Tag("reader"), @Tag("integration")})
-  void readFile_shouldReadRealFileFromResourcesSuccessfully() throws Exception {
-    String filepath = "test_data.txt";
+  void readFileShouldReadRealFileFromResourcesSuccessfully() throws Exception {
     ClassLoader classLoader = getClass().getClassLoader();
     URL resourceUrl = classLoader.getResource(filepath);
     assertNotNull(resourceUrl, "file not found");
@@ -93,10 +90,9 @@ class DataReaderImplTest {
 
   @Test()
   @Tags({@Tag("reader"), @Tag("integration")})
-  void readNoExistFile_shouldThrowException_whenExceptionOccurs() {
-    String badPath = "data/no_file.txt";
+  void readNoExistFileShouldThrowExceptionWhenExceptionOccurs() {
     SimpleArrayException exception = assertThrows(SimpleArrayException.class,
-            () -> reader.readFile(badPath));
+            () -> reader.readFile(badFilePath));
     boolean isMessageContainsFileNotRead = exception.getMessage().contains("Failed to read file");
     assertTrue(isMessageContainsFileNotRead);
   }

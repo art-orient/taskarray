@@ -8,32 +8,29 @@ import java.util.OptionalLong;
 
 public class ArrayValueServiceImpl implements ArrayValueService {
   public static final Logger logger = LogManager.getLogger();
-  private static final String MIN_OPERATION = "MIN";
-  private static final String MAX_OPERATION = "MAX";
-  private static final String SUM_OPERATION = "SUM";
 
   @Override
   public OptionalLong min(SimpleArray simpleArray) {
-    return calculate(simpleArray, MIN_OPERATION);
+    return calculate(simpleArray, Operation.MIN);
   }
 
   @Override
   public OptionalLong max(SimpleArray simpleArray) {
-    return calculate(simpleArray, MIN_OPERATION);
+    return calculate(simpleArray, Operation.MAX);
   }
 
   @Override
   public OptionalLong sum(SimpleArray simpleArray) {
-    return calculate(simpleArray, SUM_OPERATION);
+    return calculate(simpleArray, Operation.SUM);
   }
 
-  private OptionalLong calculate(SimpleArray simpleArray, String operation) {
+  private OptionalLong calculate(SimpleArray simpleArray, Operation operation) {
     if (isArrayNullOrEmpty(simpleArray)) {
       return OptionalLong.empty();
     }
     long[] array = simpleArray.getArray();
     long result = switch (operation) {
-      case MIN_OPERATION -> {
+      case MIN -> {
         long min = array[0];
         for (long value : array) {
           if (value < min) {
@@ -43,7 +40,7 @@ public class ArrayValueServiceImpl implements ArrayValueService {
         logger.debug("Minimum = {}", min);
         yield min;
       }
-      case MAX_OPERATION -> {
+      case MAX -> {
         long max = array[0];
         for (long value : array) {
           if (value > max) {
@@ -53,7 +50,7 @@ public class ArrayValueServiceImpl implements ArrayValueService {
         logger.debug("Maximum = {}", max);
         yield max;
       }
-      case SUM_OPERATION -> {
+      case SUM -> {
         long sum = 0;
         for (long value : array) {
           sum += value;
@@ -75,5 +72,9 @@ public class ArrayValueServiceImpl implements ArrayValueService {
       isNullOrEmpty = true;
     }
     return isNullOrEmpty;
+  }
+
+  private enum Operation {
+    MIN, MAX, SUM
   }
 }
