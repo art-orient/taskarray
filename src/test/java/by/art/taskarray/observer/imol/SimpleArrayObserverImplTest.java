@@ -33,14 +33,15 @@ class SimpleArrayObserverImplTest {
 
   @Test
   @Tag("observer")
-  void update_shouldCreateAndStoreStatisticsInWarehouse() {
+  void updateShouldCreateAndStoreStatisticsInWarehouse() {
     long arrayId = 22;
     long[] testArray = {5, -2, 10};
     SimpleArray simpleArray = new SimpleArray(arrayId, testArray);
     SimpleArrayEvent event = mock(SimpleArrayEvent.class);
     when(event.getSource()).thenReturn(simpleArray);
     observer.update(event);
-    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId).orElse(null);
+    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId)
+            .orElseThrow(() -> new AssertionError("Statistic not found in warehouse"));
     assertAll(
             () -> assertNotNull(statistic),
             () -> assertEquals(-2, statistic.getMin()),
@@ -51,14 +52,15 @@ class SimpleArrayObserverImplTest {
 
   @Test
   @Tag("observer")
-  void update_shouldOverrideExistingStatistic() {
+  void updateShouldOverrideExistingStatistic() {
     long arrayId = 1;
     warehouse.put(arrayId, new SimpleArrayStatistic(0, 0, 0)); // pre-existing
     SimpleArray simpleArray = new SimpleArray(arrayId, new long[]{3, 3, 3});
     SimpleArrayEvent event = mock(SimpleArrayEvent.class);
     when(event.getSource()).thenReturn(simpleArray);
     observer.update(event);
-    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId).orElse(null);
+    SimpleArrayStatistic statistic = warehouse.getParameters(arrayId)
+            .orElseThrow(() -> new AssertionError("Statistic not found in warehouse"));
     assertAll(
             () -> assertNotNull(statistic),
             () -> assertEquals(3, statistic.getMin()),

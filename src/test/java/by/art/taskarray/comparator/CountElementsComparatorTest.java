@@ -1,8 +1,6 @@
 package by.art.taskarray.comparator;
 
 import by.art.taskarray.entity.SimpleArray;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +13,7 @@ class CountElementsComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldReturnZero_whenArraysHaveSameSize() {
+  void compareShouldReturnZeroWhenArraysHaveSameSize() {
     SimpleArray a1 = new SimpleArray(new long[]{1, 2, 3});
     SimpleArray a2 = new SimpleArray(new long[]{10, 20, 30});
     int actual = comparator.compare(a1, a2);
@@ -24,7 +22,7 @@ class CountElementsComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldReturnNegative_whenFirstArrayHasFewerElements() {
+  void compareShouldReturnNegativeWhenFirstArrayHasFewerElements() {
     SimpleArray a1 = new SimpleArray(new long[]{1, 2});
     SimpleArray a2 = new SimpleArray(new long[]{10, 20, 30});
     int actual = comparator.compare(a1, a2);
@@ -33,7 +31,7 @@ class CountElementsComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldReturnPositive_whenFirstArrayHasMoreElements() {
+  void compareShouldReturnPositiveWhenFirstArrayHasMoreElements() {
     SimpleArray a1 = new SimpleArray(new long[]{1, 2, 3, 4});
     SimpleArray a2 = new SimpleArray(new long[]{10, 20});
     int actual = comparator.compare(a1, a2);
@@ -42,7 +40,7 @@ class CountElementsComparatorTest {
 
   @Test
   @Tag("comparator")
-  void compare_shouldHandleEmptyArrays() {
+  void compareShouldHandleEmptyArrays() {
     SimpleArray a1 = new SimpleArray(new long[]{});
     SimpleArray a2 = new SimpleArray(new long[]{1});
     int actual = comparator.compare(a1, a2);

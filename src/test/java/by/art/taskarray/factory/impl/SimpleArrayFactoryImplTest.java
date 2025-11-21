@@ -4,6 +4,7 @@ import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.factory.SimpleArrayFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -34,6 +35,7 @@ class SimpleArrayFactoryImplTest {
   }
 
   @Test
+  @Tag("factory")
   void createSimpleArray() {
     long[] expectedArray = {1, 2, 3};
     SimpleArray actual = factory.createSimpleArray(expectedArray);
@@ -46,13 +48,15 @@ class SimpleArrayFactoryImplTest {
 
   @ParameterizedTest
   @MethodSource("provideArrays")
+  @Tag("factory")
   void createAllSimpleArraysTest(long[] array) {
-    long[] expectedArray1 = {1, 2, 3};
+    long[] expected = array.clone();
     SimpleArray actual = factory.createSimpleArray(array);
     assertAll(
             () -> assertNotNull(actual),
             () -> assertTrue(actual.getArrayId() > 0),
-            () -> assertTrue(actual.getArray().length > 0)
+            () -> assertTrue(actual.getArray().length > 0),
+            () -> assertArrayEquals(expected, actual.getArray())
     );
   }
 }

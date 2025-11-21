@@ -5,7 +5,7 @@ import by.art.taskarray.service.ArrayValueService;
 import by.art.taskarray.service.impl.ArrayValueServiceImpl;
 import java.util.Comparator;
 
-public enum EnumArrayComparator implements Comparator<SimpleArray> {
+public enum ArrayValueEnumComparator implements Comparator<SimpleArray> {
   ID {
     @Override
     public int compare(SimpleArray array1, SimpleArray array2) {
