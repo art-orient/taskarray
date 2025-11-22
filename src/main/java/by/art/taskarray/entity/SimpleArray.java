@@ -3,6 +3,7 @@ package by.art.taskarray.entity;
 import by.art.taskarray.observer.SimpleArrayEvent;
 import by.art.taskarray.observer.SimpleArrayObservable;
 import by.art.taskarray.observer.SimpleArrayObserver;
+import by.art.taskarray.observer.impl.SimpleArrayObserverImpl;
 import by.art.taskarray.util.IdGenerator;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class SimpleArray implements SimpleArrayObservable {
   public SimpleArray(long arrayId, long[] array) {
     this.arrayId = arrayId;
     this.array = Arrays.copyOf(array, array.length);
+    this.attach(new SimpleArrayObserverImpl());
     notifyObservers();
   }
 
