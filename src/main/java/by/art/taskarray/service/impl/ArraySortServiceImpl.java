@@ -13,7 +13,7 @@ public class ArraySortServiceImpl implements ArraySortService {
   @Override
   public void bubbleSort(SimpleArray simpleArray) {
     long[] array = simpleArray.getArray();
-    logger.debug("Before bubble sorting - {}", Arrays.toString(array));
+    logger.atDebug().log("Before bubble sorting - {}", Arrays.toString(array));
     boolean sorted = false;
     while (!sorted) {
       sorted = true;
@@ -24,14 +24,14 @@ public class ArraySortServiceImpl implements ArraySortService {
         }
       }
     }
-    logger.debug("After bubble sorting - {}", Arrays.toString(array));
+    logger.atDebug().log("After bubble sorting - {}", Arrays.toString(array));
     simpleArray.setArray(array);
   }
 
   @Override
   public void insertionSort(SimpleArray simpleArray) {
     long[] array = simpleArray.getArray();
-    logger.debug("Before insertion sorting - {}", Arrays.toString(array));
+    logger.atDebug().log("Before insertion sorting - {}", Arrays.toString(array));
     for (int i = 1; i < array.length; i++) {
       long current = array[i];
       int j = i - 1;
@@ -41,7 +41,7 @@ public class ArraySortServiceImpl implements ArraySortService {
       }
       array[j + 1] = current;
     }
-    logger.debug("After insertion sorting - {}", Arrays.toString(array));
+    logger.atDebug().log("After insertion sorting - {}", Arrays.toString(array));
     simpleArray.setArray(array);
   }
 

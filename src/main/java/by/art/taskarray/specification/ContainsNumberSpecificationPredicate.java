@@ -9,6 +9,6 @@ public record ContainsNumberSpecificationPredicate(long value) implements Specif
   @Override
   public boolean test(SimpleArray simpleArray) {
     long[] array = simpleArray.getArray();
-    return LongStream.of(array).allMatch(v -> v == value);
+    return LongStream.of(array).anyMatch(v -> v == value);
   }
 }

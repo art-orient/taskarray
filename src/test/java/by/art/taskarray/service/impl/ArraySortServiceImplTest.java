@@ -4,6 +4,7 @@ import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.service.ArraySortService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArraySortServiceImplTest {
   ArraySortService sortService;
   SimpleArray simpleArray;
+  long[] expected = {-38547, -27, 15, 42, 5842368885455L};
 
   @BeforeEach
   void setUp() {
@@ -26,17 +28,17 @@ class ArraySortServiceImplTest {
   }
 
   @Test
+  @Tag("service")
   void bubbleSortTest() {
-    long[] expected = {-38547, -27, 15, 42, 5842368885455L};
-    sortService.bubbleSort(simpleArray);;
+    sortService.bubbleSort(simpleArray);
     long[] actual = simpleArray.getArray();
     assertArrayEquals(expected, actual);
   }
 
   @Test
+  @Tag("service")
   void insertionSortTest() {
-    long[] expected = {-38547, -27, 15, 42, 5842368885455L};
-    sortService.insertionSort(simpleArray);;
+    sortService.insertionSort(simpleArray);
     long[] actual = simpleArray.getArray();
     assertArrayEquals(expected, actual);
   }
