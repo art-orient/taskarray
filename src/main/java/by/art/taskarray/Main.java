@@ -1,7 +1,6 @@
 package by.art.taskarray;
 
 import by.art.taskarray.entity.SimpleArray;
-import by.art.taskarray.entity.SimpleArrayStatistic;
 import by.art.taskarray.exception.SimpleArrayException;
 import by.art.taskarray.factory.SimpleArrayFactory;
 import by.art.taskarray.factory.impl.SimpleArrayFactoryImpl;
@@ -15,13 +14,8 @@ import by.art.taskarray.service.ArrayValueService;
 import by.art.taskarray.service.impl.ArraySortServiceImpl;
 import by.art.taskarray.service.impl.ArrayValueServiceImpl;
 import by.art.taskarray.specification.IdIntervalSpecification;
-import by.art.taskarray.specification.IdSpecification;
 import by.art.taskarray.specification.Specification;
 import by.art.taskarray.warehouse.Warehouse;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class Main {
@@ -30,7 +24,6 @@ public class Main {
     List<String> linesFromFile = reader.readFile("data/data.txt");
     LongNumberParser parser = new LongNumberParserImpl();
     List<long[]> longArrays = parser.parseNumberLine(linesFromFile);
-    Warehouse warehouse = Warehouse.getInstance();
     SimpleArrayFactory factory = new SimpleArrayFactoryImpl();
     List<SimpleArray> simpleArrays = factory.createSimpleArrays(longArrays);
     ArrayValueService arrayValueService = new ArrayValueServiceImpl();
@@ -44,15 +37,15 @@ public class Main {
     sortService.insertionSort(simpleArrays.get(3));
     Repository repository = Repository.getInstance();
     repository.add(simpleArrays);
-    SimpleArray simpleArray = simpleArrays.get(0);
+    Warehouse warehouse = Warehouse.getInstance();
+    SimpleArray simpleArray1 = simpleArrays.get(0);
     long[] array = new long[]{55, 77, 100};
-    simpleArray.setArray(array);
+    simpleArray1.setArray(array);
     Specification specification = new IdIntervalSpecification(1, 30);
     List<SimpleArray> simpleArrayList = repository.queryStream(specification);
-    warehouse.getParameters(simpleArray.getArrayId());
+    warehouse.getParameters(simpleArray1.getArrayId());
+    warehouse.getParameters(simpleArrayList.get(5).getArrayId());
     warehouse.getParameters(2);
-    warehouse.getParameters(3);
-    warehouse.getParameters(10);
     warehouse.getParameters(17);
     warehouse.getParameters(18);
   }

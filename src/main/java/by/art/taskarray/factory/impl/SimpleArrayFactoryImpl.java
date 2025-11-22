@@ -18,8 +18,6 @@ public class SimpleArrayFactoryImpl implements SimpleArrayFactory {
   public SimpleArray createSimpleArray(long[] array) {
     long simpleArrayId = IdGenerator.generateId();
     SimpleArray simpleArray = new SimpleArray(simpleArrayId, array);
-    SimpleArrayObserver observer = new SimpleArrayObserverImpl();
-    simpleArray.attach(observer);
     logger.debug("SimpleArray with ID = {} was created", simpleArrayId);
     return simpleArray;
   }
