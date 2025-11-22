@@ -9,7 +9,7 @@ import java.util.Optional;
 public class Warehouse {
   private static final Logger logger = LogManager.getLogger();
   private static Warehouse instance;
-  private HashMap<Long, SimpleArrayStatistic> parameters = new HashMap<>();
+  private final HashMap<Long, SimpleArrayStatistic> parameters = new HashMap<>();
   private Warehouse() {
   }
 
@@ -30,8 +30,8 @@ public class Warehouse {
 
   public Optional<SimpleArrayStatistic> getParameters(long arrayId) {
     Optional<SimpleArrayStatistic> optionalParameters = Optional.ofNullable(parameters.get(arrayId));
-      logger.atInfo().log("Parameters of array with id = {} {}", arrayId,
-              optionalParameters.map(SimpleArrayStatistic::toString).orElse("not found"));
+      logger.atDebug().log("Parameters of array with id = {} - {}", arrayId,
+              optionalParameters.orElse(null));
     return optionalParameters;
   }
 }

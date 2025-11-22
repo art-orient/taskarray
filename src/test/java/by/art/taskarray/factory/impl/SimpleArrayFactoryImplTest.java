@@ -6,23 +6,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import java.util.stream.Stream;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SimpleArrayFactoryImplTest {
   SimpleArrayFactory factory;
-
-  static Stream<Arguments> provideArrays() {
-    return Stream.of(
-            Arguments.of(new long[]{1, 2, 3}),
-            Arguments.of(new long[]{5, 7, 9}),
-            Arguments.of(new long[]{15, 27, 39, 44, 55})
-    );
-  }
 
   @BeforeEach
   void setUp() {
@@ -46,17 +35,18 @@ class SimpleArrayFactoryImplTest {
     );
   }
 
-  @ParameterizedTest
-  @MethodSource("provideArrays")
+  @Test
   @Tag("factory")
-  void createAllSimpleArraysTest(long[] array) {
-    long[] expected = array.clone();
-    SimpleArray actual = factory.createSimpleArray(array);
+  void createAllSimpleArraysTest() {
+    long[] array1 = new long[]{1, 2, 3};
+    long[] array2 = new long[]{55, 777, -99};
+    List<long[]> arrays = List.of(array1, array2);
+    List<SimpleArray> actual = factory.createSimpleArrays(arrays);
     assertAll(
             () -> assertNotNull(actual),
-            () -> assertTrue(actual.getArrayId() > 0),
-            () -> assertTrue(actual.getArray().length > 0),
-            () -> assertArrayEquals(expected, actual.getArray())
+            () -> assertTrue(actual.get(0).getArrayId() > 0),
+            () -> assertArrayEquals(array1, actual.get(0).getArray()),
+            () -> assertArrayEquals(array2, actual.get(1).getArray())
     );
   }
 }

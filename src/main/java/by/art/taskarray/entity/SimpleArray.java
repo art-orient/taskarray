@@ -28,6 +28,26 @@ public class SimpleArray implements SimpleArrayObservable {
     notifyObservers();
   }
 
+  public long getArrayId() {
+    return arrayId;
+  }
+
+  public void setArrayId(long arrayId) {
+    if (arrayId > 0) {
+      this.arrayId = arrayId;
+      notifyObservers();
+    }
+  }
+
+  public long[] getArray() {
+    return Arrays.copyOf(array, array.length);
+  }
+
+  public void setArray(long[] array) {
+    this.array = Arrays.copyOf(array, array.length);
+    notifyObservers();
+  }
+
   @Override
   public void attach(SimpleArrayObserver observer) {
     if (observer != null) {
@@ -49,24 +69,6 @@ public class SimpleArray implements SimpleArrayObservable {
     }
   }
 
-  public long getArrayId() {
-    return arrayId;
-  }
-
-  public void setArrayId(long arrayId) {
-    this.arrayId = arrayId;
-    notifyObservers();
-  }
-
-  public long[] getArray() {
-    return Arrays.copyOf(array, array.length);
-  }
-
-  public void setArray(long[] array) {
-    this.array = Arrays.copyOf(array, array.length);
-    notifyObservers();
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -84,8 +86,8 @@ public class SimpleArray implements SimpleArrayObservable {
   @Override
   public String toString() {
     return new StringJoiner(", ", SimpleArray.class.getSimpleName() + "[", "]")
-            .add("arrayId=" + arrayId)
-            .add("array=" + Arrays.toString(array))
+            .add("arrayId = " + arrayId)
+            .add("array = " + Arrays.toString(array))
             .toString();
   }
 }
