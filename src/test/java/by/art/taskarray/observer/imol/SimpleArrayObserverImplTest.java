@@ -44,9 +44,9 @@ class SimpleArrayObserverImplTest {
             .orElseThrow(() -> new AssertionError("Statistic not found in warehouse"));
     assertAll(
             () -> assertNotNull(statistic),
-            () -> assertEquals(-2, statistic.getMin()),
-            () -> assertEquals(10, statistic.getMax()),
-            () -> assertEquals(13, statistic.getSum())
+            () -> assertEquals(-2, statistic.min()),
+            () -> assertEquals(10, statistic.max()),
+            () -> assertEquals(13, statistic.sum())
     );
   }
 
@@ -63,9 +63,9 @@ class SimpleArrayObserverImplTest {
             .orElseThrow(() -> new AssertionError("Statistic not found in warehouse"));
     assertAll(
             () -> assertNotNull(statistic),
-            () -> assertEquals(3, statistic.getMin()),
-            () -> assertEquals(3, statistic.getMax()),
-            () -> assertEquals(9, statistic.getSum())
+            () -> assertEquals(3, statistic.min()),
+            () -> assertEquals(3, statistic.max()),
+            () -> assertEquals(9, statistic.sum())
     );
   }
 }

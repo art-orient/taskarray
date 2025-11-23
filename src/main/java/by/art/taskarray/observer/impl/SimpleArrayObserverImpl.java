@@ -12,10 +12,10 @@ import org.apache.logging.log4j.Logger;
 
 public class SimpleArrayObserverImpl implements SimpleArrayObserver {
   private static final Logger logger = LogManager.getLogger();
-  private final ArrayValueService service = new ArrayValueServiceImpl();
 
   @Override
   public void update(SimpleArrayEvent simpleArrayEvent) {
+    ArrayValueService service = new ArrayValueServiceImpl();
     SimpleArray simpleArray = simpleArrayEvent.getSource();
     long min = service.min(simpleArray).orElse(Long.MAX_VALUE);
     long max = service.max(simpleArray).orElse(Long.MIN_VALUE);

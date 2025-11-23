@@ -25,11 +25,7 @@ class RepositoryTest {
 
   @AfterEach
   void tearDown() {
-    repository.queryStream(s -> true).forEach(array -> {
-      try {
-        repository.remove(array);
-      } catch (SimpleArrayException ignored) {}
-    });
+    repository.queryStream(s -> true).forEach(array -> repository.remove(array));
   }
 
   @Test
@@ -42,26 +38,10 @@ class RepositoryTest {
 
   @Test
   @Tag("repository")
-  void addNullSimpleArrayShouldThrowException() {
-    SimpleArrayException exception = assertThrows(SimpleArrayException.class,
-            () -> repository.add((SimpleArray) null));
-    assertTrue(exception.getMessage().contains("SimpleArray is null"));
-  }
-
-  @Test
-  @Tag("repository")
   void addListOfSimpleArraysShouldAddSuccessfully() throws SimpleArrayException {
     repository.add(List.of(array1, array2));
     List<SimpleArray> result = repository.queryStream(s -> true);
     assertTrue(result.containsAll(List.of(array1, array2)));
-  }
-
-  @Test
-  @Tag("repository")
-  void addNullListShouldThrowException() {
-    SimpleArrayException exception = assertThrows(SimpleArrayException.class,
-            () -> repository.add((List<SimpleArray>) null));
-    assertTrue(exception.getMessage().contains("List of SimpleArrays is null"));
   }
 
   @Test
@@ -75,27 +55,11 @@ class RepositoryTest {
 
   @Test
   @Tag("repository")
-  void removeNullSimpleArrayShouldThrowException() {
-    SimpleArrayException exception = assertThrows(SimpleArrayException.class,
-            () -> repository.remove(null));
-    assertTrue(exception.getMessage().contains("SimpleArray is null"));
-  }
-
-  @Test
-  @Tag("repository")
   void removeByIndexShouldRemoveSuccessfully() throws SimpleArrayException {
     repository.add(array1);
     repository.remove(0);
     List<SimpleArray> result = repository.queryStream(s -> true);
     assertFalse(result.contains(array1));
-  }
-
-  @Test
-  @Tag("repository")
-  void removeByInvalidIndexShouldThrowException() {
-    SimpleArrayException exception = assertThrows(SimpleArrayException.class,
-            () -> repository.remove(-1));
-    assertTrue(exception.getMessage().contains("Wrong index"));
   }
 
   @Test

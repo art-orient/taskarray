@@ -1,7 +1,6 @@
 package by.art.taskarray.repository;
 
 import by.art.taskarray.entity.SimpleArray;
-import by.art.taskarray.exception.SimpleArrayException;
 import by.art.taskarray.specification.Specification;
 import by.art.taskarray.specification.SpecificationPredicate;
 import org.apache.logging.log4j.LogManager;
@@ -26,38 +25,22 @@ public class Repository {
     return instance;
   }
 
-  public void add(SimpleArray simpleArray) throws SimpleArrayException {
-    if (simpleArray == null) {
-      logger.warn("SimpleArray is null during adding to repository");
-      throw new SimpleArrayException("SimpleArray is null during adding to repository");
-    }
+  public void add(SimpleArray simpleArray) {
     simpleArrays.add(simpleArray);
     logger.debug("SimpleArray with ID = {} added to repository", simpleArray.getArrayId());
   }
 
-  public void add(List<SimpleArray> simpleArraysToAdd) throws SimpleArrayException {
-    if (simpleArraysToAdd == null) {
-      logger.warn("List of SimpleArrays is null during adding to repository");
-      throw new SimpleArrayException("List of SimpleArrays is null during adding to repository");
-    }
+  public void add(List<SimpleArray> simpleArraysToAdd) {
     simpleArrays.addAll(simpleArraysToAdd);
     logger.debug("SimpleArrays were added to repository");
   }
 
-  public void remove(SimpleArray simpleArray) throws SimpleArrayException {
-    if (simpleArray == null) {
-      logger.warn("SimpleArray is null during deleting from repository");
-      throw new SimpleArrayException("SimpleArray is null during deleting from repository");
-    }
+  public void remove(SimpleArray simpleArray) {
     simpleArrays.remove(simpleArray);
     logger.debug("SimpleArrays removed from repository");
   }
 
-  public void remove(int index) throws SimpleArrayException {
-    if (index < 0) {
-      logger.warn("Wrong index = {}", index);
-      throw new SimpleArrayException(String.format("Wrong index = %d", index));
-    }
+  public void remove(int index) {
     simpleArrays.remove(index);
     logger.debug("SimpleArray with index = {} removed from repository", index);
   }

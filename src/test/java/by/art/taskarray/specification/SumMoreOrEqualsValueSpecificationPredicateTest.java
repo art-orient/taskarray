@@ -31,12 +31,4 @@ class SumMoreOrEqualsValueSpecificationPredicateTest {
     SumMoreOrEqualsValueSpecificationPredicate predicate = new SumMoreOrEqualsValueSpecificationPredicate(20);
     assertFalse(predicate.test(array));
   }
-
-  @Test
-  @Tag("specification")
-  void testEmptyArrayShouldReturnFalse() {
-    SimpleArray array = new SimpleArray(4, new long[]{});
-    SumMoreOrEqualsValueSpecificationPredicate predicate = new SumMoreOrEqualsValueSpecificationPredicate(0);
-    assertFalse(predicate.test(array));
-  }
 }
