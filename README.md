@@ -1,0 +1,1 @@
+A task for learning how to work with arrays, using patterns such as Factory method, Repository, and Observer.

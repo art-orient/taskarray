@@ -1,6 +1,7 @@
 package by.art.taskarray.specification;
 
 import by.art.taskarray.entity.SimpleArray;
+import by.art.taskarray.specification.predicate.ContainsNumberSpecificationPredicate;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 

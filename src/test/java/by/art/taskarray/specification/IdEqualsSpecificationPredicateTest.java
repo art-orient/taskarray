@@ -1,18 +1,19 @@
 package by.art.taskarray.specification;
 
 import by.art.taskarray.entity.SimpleArray;
+import by.art.taskarray.specification.predicate.IdEqualsSpecificationPredicate;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class IdSpecificationPredicateTest {
+class IdEqualsSpecificationPredicateTest {
 
   @Test
   @Tag("specification")
   void testIdMatchesShouldReturnTrue() {
     SimpleArray array = new SimpleArray(5, new long[]{1, 2, 3});
-    IdSpecificationPredicate predicate = new IdSpecificationPredicate(5);
+    IdEqualsSpecificationPredicate predicate = new IdEqualsSpecificationPredicate(5);
     assertTrue(predicate.test(array));
   }
 
@@ -20,7 +21,7 @@ class IdSpecificationPredicateTest {
   @Tag("specification")
   void testIdDoesNotMatch_shouldReturnFalse() {
     SimpleArray array = new SimpleArray(10, new long[]{1, 2, 3});
-    IdSpecificationPredicate predicate = new IdSpecificationPredicate(5);
+    IdEqualsSpecificationPredicate predicate = new IdEqualsSpecificationPredicate(5);
     assertFalse(predicate.test(array));
   }
 }

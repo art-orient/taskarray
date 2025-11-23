@@ -1,6 +1,7 @@
-package by.art.taskarray.specification;
+package by.art.taskarray.specification.predicate;
 
 import by.art.taskarray.entity.SimpleArray;
+import by.art.taskarray.specification.SpecificationPredicate;
 
 import java.util.stream.LongStream;
 

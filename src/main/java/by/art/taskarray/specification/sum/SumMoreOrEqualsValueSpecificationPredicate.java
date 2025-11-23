@@ -1,8 +1,9 @@
-package by.art.taskarray.specification;
+package by.art.taskarray.specification.sum;
 
 import by.art.taskarray.entity.SimpleArray;
 import by.art.taskarray.service.ArrayValueService;
 import by.art.taskarray.service.impl.ArrayValueServiceImpl;
+import by.art.taskarray.specification.SpecificationPredicate;
 
 public record SumMoreOrEqualsValueSpecificationPredicate(long value) implements SpecificationPredicate {
 

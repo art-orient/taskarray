@@ -13,7 +13,7 @@ import by.art.taskarray.service.ArraySortService;
 import by.art.taskarray.service.ArrayValueService;
 import by.art.taskarray.service.impl.ArraySortServiceImpl;
 import by.art.taskarray.service.impl.ArrayValueServiceImpl;
-import by.art.taskarray.specification.IdIntervalSpecification;
+import by.art.taskarray.specification.id.IdIntervalSpecification;
 import by.art.taskarray.specification.Specification;
 import by.art.taskarray.warehouse.Warehouse;
 import java.util.List;

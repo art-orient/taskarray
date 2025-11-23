@@ -10,6 +10,7 @@ public class Warehouse {
   private static final Logger logger = LogManager.getLogger();
   private static Warehouse instance;
   private final HashMap<Long, SimpleArrayStatistic> parameters = new HashMap<>();
+
   private Warehouse() {
   }
 
