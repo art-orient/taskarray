@@ -78,7 +78,6 @@ class DataReaderImplTest {
     URL resourceUrl = classLoader.getResource(filepath);
     assertNotNull(resourceUrl, "file not found");
     Path path = Path.of(resourceUrl.toURI());
-    System.out.println(path);
     List<String> actual = reader.readFile(path.toString());
     assertAll(
             () -> assertIterableEquals(expected, actual),
