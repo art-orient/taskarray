@@ -13,7 +13,7 @@ import java.util.StringJoiner;
 
 public class SimpleArray implements SimpleArrayObservable {
 
-  private long arrayId;
+  private final long arrayId;
   private long[] array;
   private final List<SimpleArrayObserver> observers = new ArrayList<>();
 
@@ -33,13 +33,6 @@ public class SimpleArray implements SimpleArrayObservable {
 
   public long getArrayId() {
     return arrayId;
-  }
-
-  public void setArrayId(long arrayId) {
-    if (arrayId > 0) {
-      this.arrayId = arrayId;
-      notifyObservers();
-    }
   }
 
   public long[] getArray() {
